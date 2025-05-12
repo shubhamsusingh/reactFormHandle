@@ -1,4 +1,15 @@
+import { useState } from "react";
+
 export default function Signup() {
+  const [data,setData] = useState({
+    email:"",
+    password:"",
+    confirm_password:"",
+    first_name:"",
+    last_name:"",
+    role:"",
+    acquisition:"",
+  })
   function sinupAction(formData){
     const email=formData.get('email');
     const password = formData.get('password');
@@ -6,9 +17,14 @@ export default function Signup() {
     const first_name = formData.get('first-name');
     const last_name = formData.get('last-name');
     const role = formData.get('role');
-    const acquisition = formData.get('acquisition');
+    const acquisition = formData.getAll('acquisition');
+    setData(prevData => ({
+      ...prevData,
+      first_name: first_name
+    }));
+    
 
-    console.log(acquisition);
+    console.log(data);
   }
   return (
     <form action={sinupAction}>
